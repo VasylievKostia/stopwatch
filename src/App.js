@@ -25,16 +25,13 @@ function App() {
     }
   }, [stopwatchStatus])
   
-  const toggleStopwatchStatus = () => {
+  const handleStart = () => {
     if (isWait) {
-      console.log(2)
       setStopwatchStatus(true)
       return
     }
     setStopwatchStatus(prev => !prev)
-    console.log(1)
   }
-
   const handleStop = () => {
     if (time !== 0) {
       setStopwatchStatus(prev => !prev)
@@ -48,13 +45,14 @@ function App() {
     setStopwatchStatus(false)
     setIsWait(true)
   }
+
   return (
     <div className="App">
       <h1 className='header'>Stopwatch</h1>
       <RenderTime time={time} />
         <div className="buttons">
           <button onDoubleClick={handleWait} className='stopwatch__btn btn'>Wait</button>
-          {stopwatchStatus ? ( <button onClick={handleStop} className='stopwatch__stopBtn btn'>Stop</button>) : (<button onClick={toggleStopwatchStatus} className='stopwatch__startBtn btn'>Start</button>) }  
+          {stopwatchStatus ? ( <button onClick={handleStop} className='stopwatch__stopBtn btn'>Stop</button>) : (<button onClick={handleStart} className='stopwatch__startBtn btn'>Start</button>) }  
           <button onClick={handleReset} className='stopwatch__btn btn'>Reset</button>
         </div>
     </div>
